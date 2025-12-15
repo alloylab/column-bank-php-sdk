@@ -37,6 +37,18 @@ final readonly class API
     }
 
     /**
+     * Book Transfer endpoints
+     *
+     * @return Endpoints\BookTransfer
+     *
+     * @noinspection PhpUnused
+     */
+    public function bookTransfer(): Endpoints\BookTransfer
+    {
+        return new Endpoints\BookTransfer($this->httpClient);
+    }
+
+    /**
      * Platform endpoints
      *
      * @return Endpoints\Platform
