@@ -4,8 +4,23 @@ include:
   - template: Secret-Detection.gitlab-ci.yml
 
 stages:
-  - test
   - security
+  - test
+
+sast:
+  stage: security
+  artifacts:
+    expire_in: 1 week
+
+dependency_scanning:
+  stage: security
+  artifacts:
+    expire_in: 1 week
+
+secret_detection:
+  stage: security
+  artifacts:
+    expire_in: 1 week
 
 phpstan:
   stage: test
@@ -30,10 +45,10 @@ pest-8.5:
   variables:
     COLUMN_API_TOKEN: $COLUMN_API_TOKEN
     COLUMN_ENTITY_ID: $COLUMN_ENTITY_ID
-    COLUMN_BANK_ACCOUNT_ID: $COLUMN_BANK_ACCOUNT_ID
   before_script:
     - apt-get update && apt-get install -y git unzip libicu-dev zlib1g-dev
     - curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+    - echo $COLUMN_ENTITY_ID
     - cd $CI_PROJECT_DIR && composer install --no-interaction --no-progress
   script:
     - cd $CI_PROJECT_DIR && vendor/bin/pest
@@ -41,18 +56,3 @@ pest-8.5:
     expire_in: 1 week
   rules:
     - if: $CI_COMMIT_BRANCH == "dev"
-
-sast:
-  stage: security
-  artifacts:
-    expire_in: 1 week
-
-dependency_scanning:
-  stage: security
-  artifacts:
-    expire_in: 1 week
-
-secret_detection:
-  stage: security
-  artifacts:
-    expire_in: 1 week
