@@ -42,13 +42,9 @@ phpstan:
 pest-8.5:
   stage: test
   image: php:8.5-cli
-  variables:
-    COLUMN_API_TOKEN: $COLUMN_API_TOKEN
-    COLUMN_ENTITY_ID: $COLUMN_ENTITY_ID
   before_script:
     - apt-get update && apt-get install -y git unzip libicu-dev zlib1g-dev
     - curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
-    - echo $COLUMN_ENTITY_ID
     - cd $CI_PROJECT_DIR && composer install --no-interaction --no-progress
   script:
     - cd $CI_PROJECT_DIR && vendor/bin/pest
