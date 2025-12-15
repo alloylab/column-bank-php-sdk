@@ -2,7 +2,7 @@
     "name": "alloylab/column-bank-php-sdk",
     "description": "Column Bank PHP SDK",
     "homepage": "https://github.com/alloylab/column-bank-php-sdk",
-    "license": " GPL-3.0",
+    "license": "GPL-3.0",
     "authors": [
         {
             "name": "Trevor",
