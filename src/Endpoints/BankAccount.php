@@ -34,10 +34,11 @@ final readonly class BankAccount
      *     "description": string,
      *     "entity_id": string,
      *     "interest_config_id"?: string,
-     *     "is_overdraftable"?: bool,
+     *     "is_interest_bearing"?: "true" | "false",
+     *     "is_overdraftable"?: "true" | "false",
      *     "overdraft_reserve_account_id"?: string,
-     *     "type"?: "CHECKING"|"OVERDRAFT_RESERVE"|"PROGRAM_RESERVE",
      *     "display_name"?: string,
+     *     "fdic_insurance"?: string,
      * } $data
      * @return string
      *
@@ -46,9 +47,7 @@ final readonly class BankAccount
     public function create(array $data): string
     {
         try {
-            $response = $this->httpClient->post('/bank-accounts', [
-                'form_params' => $data,
-            ]);
+            $response = $this->httpClient->post('/bank-accounts', ['form_params' => $data]);
 
             return Helper::formattedResponse($response);
         } catch (Exception|GuzzleException $e) {
@@ -65,7 +64,7 @@ final readonly class BankAccount
      *
      * @param  array{
      *     "entity_id"?: string,
-     *     "is_overdraftable"?: bool,
+     *     "is_overdraftable"?: "true" | "false",
      *     "type"?: "CHECKING" | "OVERDRAFT_RESERVE" | "PROGRAM_RESERVE",
      *     "overdraft_reserve_account_id"?: string,
      *     "limit"?: int,
@@ -144,9 +143,12 @@ final readonly class BankAccount
      * @param  string  $id
      * @param  array{
      *     "description"?: string,
-     *     "display_name"?: string,
+     *     "interest_config_id"?: string,
+     *     "is_interest_bearing"?: "true"|"false",
      *     "is_overdraftable"?: bool,
      *     "overdraft_reserve_account_id"?: string,
+     *     "display_name"?: string,
+     *     "is_ach_debitable"?: "true"|"false",
      * } $data
      * @return string
      *
@@ -155,7 +157,7 @@ final readonly class BankAccount
     public function update(string $id, array $data): string
     {
         try {
-            $response = $this->httpClient->patch('/bank-accounts/'.$id, $data);
+            $response = $this->httpClient->patch('/bank-accounts/'.$id, ['form_params' => $data]);
 
             return Helper::formattedResponse($response);
         } catch (Exception|GuzzleException $e) {
