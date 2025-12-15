@@ -83,7 +83,7 @@ final readonly class BankAccount
     public function list(array $query = []): string
     {
         try {
-            $response = $this->httpClient->get('/bank-accounts', $query);
+            $response = $this->httpClient->get('/bank-accounts', ['query' => $query]);
 
             return Helper::formattedResponse($response);
         }

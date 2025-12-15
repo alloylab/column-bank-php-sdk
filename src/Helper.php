@@ -18,8 +18,7 @@ final readonly class Helper
     public static function formattedResponse(ResponseInterface $response): string
     {
         $rawBody = $response->getBody()->getContents();
-        $decoded = json_decode($rawBody, true); // array|null
-
+        $decoded = json_decode($rawBody, true);
 
         if (is_array($decoded)) {
             $responseFormat = $decoded;
