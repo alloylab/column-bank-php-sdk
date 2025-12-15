@@ -1,8 +1,11 @@
 <?php
 
-namespace App\Services\Banking\Column\API;
+namespace AlloyLab\ColumnBank\Endpoints;
 
-use App\Services\Http\Client as HttpClient;
+use AlloyLab\ColumnBank\Helper;
+use DateTime;
+use Exception;
+use GuzzleHttp\Client as HttpClient;
 use GuzzleHttp\Exception\GuzzleException;
 
 /**
