@@ -4,24 +4,13 @@ namespace AlloyLab\ColumnBank\Endpoints;
 
 use AlloyLab\ColumnBank\Helper;
 use Exception;
-use GuzzleHttp\Client as HttpClient;
 use GuzzleHttp\Exception\GuzzleException;
 
 /**
  * Transfer Endpoints
  */
-final readonly class Transfer
+final readonly class Transfer extends Base
 {
-    protected HttpClient $httpClient;
-
-    /**
-     * @param HttpClient $httpClient
-     */
-    public function __construct(HttpClient $httpClient)
-    {
-        $this->httpClient = $httpClient;
-    }
-
     /**
      * List all transfers
      *

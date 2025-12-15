@@ -4,25 +4,14 @@ namespace AlloyLab\ColumnBank\Endpoints;
 
 use AlloyLab\ColumnBank\Helper;
 use Exception;
-use GuzzleHttp\Client as HttpClient;
 use GuzzleHttp\Cookie\CookieJar;
 use GuzzleHttp\Exception\GuzzleException;
 
 /**
  * Platform Endpoints
  */
-final readonly class Platform
+final readonly class Platform extends Base
 {
-    protected HttpClient $httpClient;
-
-    /**
-     * @param HttpClient $httpClient
-     */
-    public function __construct(HttpClient $httpClient)
-    {
-        $this->httpClient = $httpClient;
-    }
-
     /**
      * Get a platform
      *
@@ -30,8 +19,10 @@ final readonly class Platform
      *
      * @see Not-Documented
      *
-     * @param  string  $id
+     * @param string $id
+     * @param string $sessionId
      * @return string
+     *
      *
      * @noinspection PhpUnused
      */

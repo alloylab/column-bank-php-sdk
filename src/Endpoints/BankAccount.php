@@ -4,24 +4,13 @@ namespace AlloyLab\ColumnBank\Endpoints;
 
 use AlloyLab\ColumnBank\Helper;
 use Exception;
-use GuzzleHttp\Client as HttpClient;
 use GuzzleHttp\Exception\GuzzleException;
 
 /**
  * Bank Account Endpoints
  */
-final readonly class BankAccount
+final readonly class BankAccount extends Base
 {
-    protected HttpClient $httpClient;
-
-    /**
-     * @param HttpClient $httpClient
-     */
-    public function __construct(HttpClient $httpClient)
-    {
-        $this->httpClient = $httpClient;
-    }
-
     /**
      * Create a bank account
      *
@@ -199,7 +188,6 @@ final readonly class BankAccount
      *      "from_date": string,
      *      "to_date": string,
      *  } $query
-     *
      * @return string
      *
      * @noinspection PhpUnused
@@ -224,7 +212,6 @@ final readonly class BankAccount
      *
      * @param  string  $id
      * @param  string  $entity_id
-     *
      * @return string
      *
      * @noinspection PhpUnused
