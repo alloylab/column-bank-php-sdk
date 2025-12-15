@@ -1,4 +1,16 @@
 {
+    "name": "alloylab/column-bank-php-sdk",
+    "description": "Column Bank PHP SDK",
+    "homepage": "https://github.com/alloylab/column-bank-php-sdk",
+    "license": " GPL-3.0",
+    "authors": [
+        {
+            "name": "Trevor",
+            "email": "trevor@alloylab.com",
+            "role": "Developer"
+        }
+    ],
+    "minimum-stability": "stable",
     "require": {
         "php": "^8.4|^8.5",
         "guzzlehttp/guzzle": "^7"
