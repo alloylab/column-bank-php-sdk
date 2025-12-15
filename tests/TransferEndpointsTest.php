@@ -2,7 +2,7 @@
 
 use AlloyLab\ColumnBank\API;
 
-it('hits all BankAccount endpoints and requires HTTP 200 responses', function () {
+it('hits all Transfer endpoints and requires HTTP 200 responses', function () {
     /*
      * API Setup
      */
@@ -17,11 +17,11 @@ it('hits all BankAccount endpoints and requires HTTP 200 responses', function ()
     /**
      * Endpoint Tests
      */
-    $bankAccountId = getenv('COLUMN_BANK_ACCOUNT_ID');
-    if (!$bankAccountId) {
-        $this->markTestSkipped('Environment variable COLUMN_BANK_ACCOUNT_ID is not set.');
+    $bankAccountId1 = getenv('COLUMN_BANK_ACCOUNT_ID1');
+    if (!$bankAccountId1) {
+        $this->markTestSkipped('Environment variable COLUMN_BANK_ACCOUNT_ID1 is not set.');
     }
 
-    $list = $api->transfer()->list(['bank_account_id' => (string) $bankAccountId]);
+    $list = $api->transfer()->list(['bank_account_id' => (string) $bankAccountId1]);
     expectOkResponse($list, 'transfer::list');
 });

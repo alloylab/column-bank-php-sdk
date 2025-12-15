@@ -2,7 +2,7 @@
 
 use AlloyLab\ColumnBank\API;
 
-it('hits all BankAccount endpoints and requires HTTP 200 responses', function () {
+it('hits all Book Transfer endpoints and requires HTTP 200 responses', function () {
     /*
      * API Setup
      */
