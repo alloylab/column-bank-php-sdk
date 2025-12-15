@@ -42,7 +42,7 @@ final readonly class Platform
                 'session_id' => $sessionId,
             ], '.column.com');
 
-            $response = $this->httpClient->get('/dashboard/platforms/'.$id, [
+            $response = $this->httpClient->get("/dashboard/platforms/$id", [
                 'cookies' => $jar,
                 'headers' => [
                     'platform-id' => $id,

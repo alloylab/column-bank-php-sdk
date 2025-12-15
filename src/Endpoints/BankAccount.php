@@ -46,7 +46,7 @@ final readonly class BankAccount
     public function create(array $data): string
     {
         try {
-            $response = $this->httpClient->post('/bank-accounts', ['form_params' => $data]);
+            $response = $this->httpClient->post("/bank-accounts", ['form_params' => $data]);
 
             return Helper::formattedResponse($response);
         } catch (Exception|GuzzleException $e) {
@@ -81,7 +81,7 @@ final readonly class BankAccount
     public function list(array $query = []): string
     {
         try {
-            $response = $this->httpClient->get('/bank-accounts', ['query' => $query]);
+            $response = $this->httpClient->get("/bank-accounts", ['query' => $query]);
 
             return Helper::formattedResponse($response);
         }
@@ -124,7 +124,7 @@ final readonly class BankAccount
     public function get(string $id): string
     {
         try {
-            $response = $this->httpClient->get('/bank-accounts/'.$id);
+            $response = $this->httpClient->get("/bank-accounts/$id");
 
             return Helper::formattedResponse($response);
         } catch (Exception|GuzzleException $e) {
@@ -156,7 +156,7 @@ final readonly class BankAccount
     public function update(string $id, array $data): string
     {
         try {
-            $response = $this->httpClient->patch('/bank-accounts/'.$id, ['form_params' => $data]);
+            $response = $this->httpClient->patch("/bank-accounts/$id", ['form_params' => $data]);
 
             return Helper::formattedResponse($response);
         } catch (Exception|GuzzleException $e) {
@@ -179,7 +179,7 @@ final readonly class BankAccount
     public function delete(string $id): string
     {
         try {
-            $response = $this->httpClient->delete('/bank-accounts/'.$id);
+            $response = $this->httpClient->delete("/bank-accounts/$id");
 
             return Helper::formattedResponse($response);
         } catch (Exception|GuzzleException $e) {
@@ -207,7 +207,7 @@ final readonly class BankAccount
     public function history(string $id, array $query): string
     {
         try {
-            $response = $this->httpClient->get('/bank-accounts/'.$id, $query);
+            $response = $this->httpClient->get("/bank-accounts/$id", ['query' => $query]);
 
             return Helper::formattedResponse($response);
         } catch (Exception|GuzzleException $e) {
@@ -232,9 +232,7 @@ final readonly class BankAccount
     public function owner(string $id, string $entity_id): string
     {
         try {
-            $response = $this->httpClient->post('/bank-accounts/'.$id.'/owner', [
-                'entity_id' => $entity_id
-            ]);
+            $response = $this->httpClient->post("/bank-accounts/$id/owner", ['entity_id' => $entity_id]);
 
             return Helper::formattedResponse($response);
         } catch (Exception|GuzzleException $e) {
