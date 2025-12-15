@@ -136,8 +136,8 @@ final readonly class BookTransfer extends Base
      *
      * @param string $id
      * @param array{
-     *     "amount"?: int, // in cents (e.g. $1.75 = 175)
-     *     "currency_code"?: string, // ISO 4217 (e.g. USD)
+     *     "amount": int, // in cents (e.g. $1.75 = 175)
+     *     "currency_code": string, // ISO 4217 (e.g. USD)
      *     "allowed_overdraft"?: "true" | "false",
      * } $data
      * @return string
