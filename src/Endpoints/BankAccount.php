@@ -3,7 +3,6 @@
 namespace AlloyLab\ColumnBank\Endpoints;
 
 use AlloyLab\ColumnBank\Helper;
-use DateTime;
 use Exception;
 use GuzzleHttp\Client as HttpClient;
 use GuzzleHttp\Exception\GuzzleException;
@@ -70,10 +69,10 @@ final readonly class BankAccount
      *     "limit"?: int,
      *     "starting_after"?: string,
      *     "ending_before"?: string,
-     *     "created.gt"?: DateTime,
-     *     "created.gte"?: DateTime,
-     *     "created.lt"?: DateTime,
-     *     "created.lte"?: DateTime,
+     *     "created.gt"?: string, // ISO-8601 datetime
+     *     "created.gte"?: string, // ISO-8601 datetime
+     *     "created.lt"?: string, // ISO-8601 datetime
+     *     "created.lte"?: string, // ISO-8601 datetime
      * } $query
      * @return string
      *

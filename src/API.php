@@ -37,6 +37,30 @@ final readonly class API
     }
 
     /**
+     * Platform endpoints
+     *
+     * @return Endpoints\Platform
+     *
+     * @noinspection PhpUnused
+     */
+    public function platform(): Endpoints\Platform
+    {
+        return new Endpoints\Platform($this->httpClient);
+    }
+
+    /**
+     * Transfer endpoints
+     *
+     * @return Endpoints\Transfer
+     *
+     * @noinspection PhpUnused
+     */
+    public function transfer(): Endpoints\Transfer
+    {
+        return new Endpoints\Transfer($this->httpClient);
+    }
+
+    /**
      * Build HTTP Client configured for Column
      *
      * @param string $apiToken Column API Token
