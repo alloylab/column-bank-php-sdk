@@ -4,27 +4,8 @@ include:
   - template: Secret-Detection.gitlab-ci.yml
 
 stages:
-  - test
   - security
-
-phpstan:
-  stage: test
-  image:
-    name: ghcr.io/phpstan/phpstan:latest
-    entrypoint: [""]
-  variables:
-    APP_PATH: $CI_PROJECT_DIR/src
-  script:
-    - apk update && apk add curl patch;
-    - curl -sSLf -o /usr/local/bin/install-php-extensions https://github.com/mlocati/docker-php-extension-installer/releases/latest/download/install-php-extensions
-    - chmod +x /usr/local/bin/install-php-extensions
-    - install-php-extensions zip
-    - cd $APP_PATH && composer install --optimize-autoloader --ignore-platform-reqs;
-    - $APP_PATH/vendor/bin/phpstan analyse -c phpstan.neon;
-  artifacts:
-    expire_in: 1 week
-  rules:
-    - if: $CI_COMMIT_BRANCH == "dev"
+  - test
 
 sast:
   stage: security
@@ -40,3 +21,34 @@ secret_detection:
   stage: security
   artifacts:
     expire_in: 1 week
+
+phpstan:
+  stage: test
+  image:
+    name: ghcr.io/phpstan/phpstan:latest
+    entrypoint: [""]
+  script:
+    - apk update && apk add curl patch;
+    - curl -sSLf -o /usr/local/bin/install-php-extensions https://github.com/mlocati/docker-php-extension-installer/releases/latest/download/install-php-extensions
+    - chmod +x /usr/local/bin/install-php-extensions
+    - install-php-extensions zip
+    - cd $CI_PROJECT_DIR && composer install --optimize-autoloader --ignore-platform-reqs;
+    - $CI_PROJECT_DIR/vendor/bin/phpstan analyse -c phpstan.neon;
+  artifacts:
+    expire_in: 1 week
+  rules:
+    - if: $CI_COMMIT_BRANCH == "dev"
+
+pest-8.5:
+  stage: test
+  image: php:8.5-cli
+  before_script:
+    - apt-get update && apt-get install -y git unzip libicu-dev zlib1g-dev
+    - curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+    - cd $CI_PROJECT_DIR && composer install --no-interaction --no-progress
+  script:
+    - cd $CI_PROJECT_DIR && vendor/bin/pest
+  artifacts:
+    expire_in: 1 week
+  rules:
+    - if: $CI_COMMIT_BRANCH == "dev"
