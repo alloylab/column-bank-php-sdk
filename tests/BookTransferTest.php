@@ -54,7 +54,7 @@ it('hits all Book Transfer endpoints and requires HTTP 200 responses', function 
     expectOkResponse($createHold1, 'bookTransfer::createHold1');
 
     $idHold1 = json_decode($createHold1)->id;
-    $update = $api->bookTransfer()->update((string) $idHold1, ['amount' => 200]);
+    $update = $api->bookTransfer()->update((string) $idHold1, ['amount' => 200, 'currency_code' => 'USD']);
     expectOkResponse($update, 'bookTransfer::update');
 
     $cancel = $api->bookTransfer()->cancel((string) $idHold1);
