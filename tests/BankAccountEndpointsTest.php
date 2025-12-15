@@ -34,9 +34,9 @@ it('hits all BankAccount endpoints and requires HTTP 200 responses', function ()
     $listByEntity = $api->bankAccount()->listByEntity($entityId);
     expectOkResponse($listByEntity, 'bankAccount::listByEntity');
 
-    $bankAccountId = getenv('COLUMN_BANK_ACCOUNT_ID');
+    $bankAccountId = getenv('COLUMN_BANK_ACCOUNT_ID1');
     if (!$bankAccountId) {
-        $this->markTestSkipped('Environment variable COLUMN_BANK_ACCOUNT_ID is not set.');
+        $this->markTestSkipped('Environment variable COLUMN_BANK_ACCOUNT_ID1 is not set.');
     }
 
     $get = $api->bankAccount()->get($bankAccountId);
@@ -46,6 +46,6 @@ it('hits all BankAccount endpoints and requires HTTP 200 responses', function ()
     expectOkResponse($update, 'bankAccount::update');
 
     $deleteId = json_decode($create)->id;
-    $delete = $api->bankAccount()->delete($deleteId);
+    $delete = $api->bankAccount()->delete((string) $deleteId);
     expectOkResponse($delete, 'bankAccount::delete');
 });

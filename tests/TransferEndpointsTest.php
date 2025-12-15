@@ -22,6 +22,6 @@ it('hits all BankAccount endpoints and requires HTTP 200 responses', function ()
         $this->markTestSkipped('Environment variable COLUMN_BANK_ACCOUNT_ID is not set.');
     }
 
-    $list = $api->transfer()->list(['bank_account_id' => $bankAccountId]);
+    $list = $api->transfer()->list(['bank_account_id' => (string) $bankAccountId]);
     expectOkResponse($list, 'transfer::list');
 });
