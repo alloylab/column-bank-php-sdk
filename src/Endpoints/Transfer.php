@@ -64,7 +64,9 @@ final readonly class Transfer extends Base
     public function list(array $query = []): string
     {
         try {
-            $response = $this->httpClient->get("/transfers", ['query' => $query]);
+            $response = $this->httpClient->get("/transfers", [
+                'query' => $query
+            ]);
 
             return Helper::formattedResponse($response);
         }
